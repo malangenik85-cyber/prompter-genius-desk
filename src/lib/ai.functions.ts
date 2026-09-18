@@ -119,7 +119,7 @@ async function fetchArticle(rawUrl: string): Promise<{ ok: true; text: string; t
 
 export const researchTopic = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => ResearchInput.parse(input))
-  .handler(async ({ data }): Promise<AiResult<z.infer<typeof ResearchSchema> & { source?: string }>> => {
+  .handler(async ({ data }): Promise<AiResult<z.infer<typeof ResearchSchema> & { source?: string | undefined }>> => {
     const { createLovableResponsesProvider, CHAT_MODEL, RESPONSES_PROVIDER_OPTIONS, describeAiError } =
       await import("./ai-gateway.server");
 
